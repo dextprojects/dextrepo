@@ -1,0 +1,98 @@
+<section id="pageloader">
+	<div class="loader-item fa fa-spin"></div>
+</section>
+<div class="alert alert-success alert-block fade" style="display: block;position: absolute;bottom: 10px;right: 20px;" id='alertId' hidden="hidden">
+	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> New Notice Have Been Saved.&nbsp;
+</div>
+<div class="alert alert-danger alert-block fade" style="display: block;position: absolute;bottom: 10px;right: 20px;" id='alertId' hidden="hidden">
+	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> Something Wrong with Database. Try Again..! &nbsp;
+</div>
+<div class="container-full" style="padding: 10px 10px 10px 10px;" ng-controller = "NoticeCtrl" ng-init = "startingFuncs()">
+	<div class="panel panel-default">
+		<div class="panel-heading">Enter Notice</div>
+		<div class="panel-body">
+			<form role="form" class="form-horizontal">
+				<fieldset ng-disabled="isSaving">
+					<div class="form-group">
+						<label class="control-label col-lg-2 col-md-2">Effective Date</label>
+						<div class="col-lg-10 col-md-10" id="sandbox-container">
+							<input type="text" class="form-control" name="effDt" ng-model="effDt" placeholder="Effective Date">
+						</div>
+			   		</div>
+					<div class="form-group">
+						<label class="control-label col-lg-2 col-md-2">To</label>
+					    <div class="col-lg-10 col-md-10">
+							<select class="form-control js-data-example-ajax" ng-model="houseCD" id="houseCD" data-placeholder="All House" data-allow-clear="true">
+								<option value="" selected="selected">All House</option>
+							</select>
+					    </div>
+				   	</div>
+				   	<div class="form-group">
+					    <label class="control-label col-lg-2 col-md-2">Subject</label>
+					    <div class="col-lg-10 col-md-10">
+					    	<input type="text" class="form-control" ng-model="subject" placeholder="Subject" class="form-control" rows="3">
+						</div>
+			   		</div>
+			   		<div class="form-group">
+					    <label class="control-label col-lg-2 col-md-2">Description</label>
+					    <div class="col-lg-10 col-md-10">
+					    	<textarea ng-model="description" placeholder="Description" class="form-control" rows="3"></textarea>
+						</div>
+			   		</div>
+			   		<div class="form-group">
+					    <div class="col-lg-12 col-md-12" align="center">
+					    	<input type="button" class="btn btn-primary" name="saveBtn" value="Save" ng-click="saveNotice()">
+					    	<input type="button" class="btn btn-default" name="resetBtn" value="Reset" ng-click="resetNotice()">
+						</div>
+			   		</div>
+		   		</fieldset>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title pull-left">
+				Notice Board
+            </h4>
+			<input type="button" class="btn btn-default pull-right" value="Refresh" ng-click="getNotice()">
+			<div class="clearfix"></div>
+		</div>
+		<div class="panel-body" style="height: 200px;overflow: auto">
+			<table class="table table-striped" style="font-size: small">
+				<thead>
+					<tr>
+						<th class="col-xs-1" align="center" style="text-align: center">#</th>
+					    <th class="col-xs-1" align="center" style="text-align: center">Notice ID</th>
+					    <th class="col-xs-2" align="center" style="text-align: center">Subject</th>
+					    <th class="col-xs-4" align="center" style="text-align: center">Detail</th>          
+					    <th class="col-xs-2" align="center" style="text-align: center">Created Date</th>
+					    <th class="col-xs-1" align="center" style="text-align: center">To</th>
+					    <th class="col-xs-1" align="center" style="text-align: center">Created By</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr ng-repeat="notice in allNotices">
+						    <td class="col-xs-1"  align="center" style="vertical-align: middle">{{notice.No}}</td>
+						    <td class="col-xs-1"  align="center" style="vertical-align: middle">{{notice.notice_id}}</td>
+						    <td class="col-xs-2"  align="center" style="vertical-align: middle">{{notice.not_subject}}</td>
+						    <td class="col-xs-4"  align="center" style="vertical-align: middle">{{notice.not_detail}}</td>
+						    <td class="col-xs-2"  align="center" style="vertical-align: middle">{{notice.created_dt}}</td>
+						    <td class="col-xs-1"  align="center" style="vertical-align: middle">{{notice.to_id}}</td>
+						    <td class="col-xs-1"  align="center" style="vertical-align: middle">{{notice.created_id}}</td>
+					    </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+      //<![CDATA[
+	      $(window).load(function() { // makes sure the whole site is loaded
+	         $('.loader-item').fadeOut(); // will first fade out the loading animation
+	         $('#pageloader').delay(350).fadeOut('slow'); // will fade ou the white DIV that covers the website.
+	         $('body').delay(350).css({'overflow-y':'visible'});
+	      })
+      //]]>
+</script>

@@ -1,0 +1,50 @@
+<section id="pageloader">
+	<div class="loader-item fa fa-spin"></div>
+</section>
+<div class="container-full" style="padding: 10px 10px 10px 10px;" ng-controller = "ScanBarcodeCtrl" ng-init = "startingFuncs()">
+	<form role="form">
+		
+	    <div>
+			<h1 align="center">
+		        <span class="label label-default">Scanned Barcodes</span>
+		   	</h1>
+			<div style="margin-bottom: 20px" align="right" >
+				<input type="button" class="btn btn-sm btn-default" value="Refresh" ng-click="getUsers()">
+			</div>
+				<table align="left" style="font-size: 20px;margin-bottom: 20px;" width="80%">
+					<tr align="left">
+						<td><span class="label label-default">P.O</span><span class="label label-warning">201609001</span></td>
+						<td><span class="label label-default">Supplier Name</span><span class="label label-warning">LG</span></td>
+						<td><span class="label label-default">Product</span><span class="label label-warning">TV</span></td>
+						<td><span class="label label-default">Sub Category</span><span class="label label-warning">LED</span></td>
+					</tr>
+				</table>
+			<table class="table table-hover" width="100%" style="font-size: small">
+		        <thead>
+		          <tr>
+		            <th style="text-align: center">#</th>
+		            <th style="text-align: center">Date</th>
+		            <th style="text-align: center">Format</th>
+		            <th style="text-align: center">Content</th>          
+		          </tr>
+		        </thead>
+		        <tbody>
+		        	<tr ng-repeat="Barcode in allBarcodes">
+		        		<td align="center" style="vertical-align: middle">{{Barcode.No}}</td>
+		        		<td align="center" style="vertical-align: middle">{{Barcode.scan_dt}}</td>
+		        		<td align="center" style="vertical-align: middle">{{Barcode.value_1}}</td>
+		        		<td align="center" style="vertical-align: middle">{{Barcode.value_2}}</td>
+		        	</tr>
+		        </tbody>
+		    </table>
+	</form>
+</div>
+<script type="text/javascript">
+      //<![CDATA[
+	      $(window).load(function() { // makes sure the whole site is loaded
+	         $('.loader-item').fadeOut(); // will first fade out the loading animation
+	         $('#pageloader').delay(350).fadeOut('slow'); // will fade ou the white DIV that covers the website.
+	         $('body').delay(350).css({'overflow-y':'visible'});
+	      })
+      //]]>
+</script>

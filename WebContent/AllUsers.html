@@ -1,0 +1,48 @@
+<section id="pageloader">
+	<div class="loader-item fa fa-spin"></div>
+</section>
+<div class="container-full" style="padding: 10px 10px 10px 10px;" ng-controller = "AllUsersCtrl" ng-init = "startingFuncs()">
+	<form role="form">
+		
+	    <div>
+		
+			<h1 align="center">
+		        <span class="label label-info">All Users</span>
+		   	</h1>
+		
+			<div align="right" style="padding-bottom: 20px;">
+				<input type="button" class="btn btn-sm btn-default" value="Refresh" ng-click="getUsers()">
+			</div>
+			<table class="table table-hover" width="100%" style="font-size: small">
+		        <thead>
+		          <tr>
+		            <th style="text-align: center">#</th>
+		            <th style="text-align: center">User Id</th>
+		            <th style="text-align: center">Name</th>
+		            <th style="text-align: center">Date</th>          
+		            <th style="text-align: center">Mobile No</th>
+		            <th style="text-align: center">User Type</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		        	<tr ng-repeat="user in allUsers">
+		        		<td align="center" style="vertical-align: middle">{{user.No}}</td>
+		        		<td align="center" style="vertical-align: middle">{{user.Emp_cd}}</td>
+		        		<td align="center" style="vertical-align: middle">{{user.Emp_nm}}</td>
+		        		<td align="center" style="vertical-align: middle">{{user.Join_dt}}</td>
+		        		<td align="center" style="vertical-align: middle">{{user.Mob_no}}</td>
+		        		<td align="center" style="vertical-align: middle">{{user.User_flag=='Y'?'Admin':'Normal'}}</td>
+		        	</tr>
+		        </tbody>
+		    </table>
+	</form>
+</div>
+<script type="text/javascript">
+      //<![CDATA[
+	      $(window).load(function() { // makes sure the whole site is loaded
+	         $('.loader-item').fadeOut(); // will first fade out the loading animation
+	         $('#pageloader').delay(350).fadeOut('slow'); // will fade ou the white DIV that covers the website.
+	         $('body').delay(350).css({'overflow-y':'visible'});
+	      })
+      //]]>
+</script>

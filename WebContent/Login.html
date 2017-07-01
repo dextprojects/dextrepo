@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="wrapper">
+		<div class="form-signin">
+			<div class="page-header" align="center">
+			    <img src="images/checkin2logo.png" style="height: 65%;width: 65%;"><br/>
+			</div>
+			<form method="post" id="form1" name="form1">
+			    <div class="form-group">
+			        <input type="text" class="form-control input-lg" required placeholder="UserID" required ng-model="userID" style="color: gray" name="userID" maxlength="20" ng-keypress="checkEnter(event);">
+			    </div>
+			    <div class="form-group">
+			        <input type="password" class="form-control input-lg" required placeholder="Password" ng-model="password" name="password" style="color: gray" maxlength="20" ng-keypress="checkEnter(event);">
+			    </div>
+			    <div class="form-group">
+			        <input type='button' class="btn btn-primary btn-lg btn-block" ng-disabled="form1.$invalid" value='Sign In' name="Login" ng-click="submit()">
+			    </div>
+				<div id="result" align="center" style="color: red;">{{status}}</div>
+		 		<input type="hidden" name='option' value="CheckLogin">
+			</form>
+		</div>
+	</div>
+</div>

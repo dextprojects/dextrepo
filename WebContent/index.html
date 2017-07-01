@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Check In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="SHORTCUT ICON" href="favicon.ico">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/ui/bootstrap/animate.css"/>
+    <link rel="stylesheet" href="css/ui/bootstrap/loader.css"/>
+    <link rel="stylesheet" href="css/sb-admin-2.css">
+    <link rel="stylesheet" href="js/sidebar/sidebar.css">
+    <link href="css/select2.css" rel="stylesheet" />
+    <link href="css/bootstrap-datepicker3.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.min.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css"> 
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
+    
+    <script src = "bower_components/jquery/dist/jquery.min.js"></script>
+    <script src = "bower_components/angular/angular.min.js"></script>
+    <script src = "bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src = "bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src = "bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src = "bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src = "bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src = "bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src = "bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src = "bower_components/angular-route/angular-route.min.js"></script>
+    <script src = "js/sidebar/sidebar.js"></script>
+    <script src = "js/select2.min.js"></script>
+    
+    <script src = "js/graph/highcharts.js"></script>
+    <script src = "js/graph/highcharts-3d.js"></script>
+    <script src = "js/app.js"></script>
+    <script src = "js/sb-admin-2.js"></script>
+    <script src = "js/bootstrap-datepicker.js"></script>
+    
+    <script src = "js/controller/LoginCtrl.js"></script>
+    <script src = "js/controller/DashboardCtrl.js"></script>
+    <script src = "js/controller/RequestsCtrl.js"></script>
+    <script src = "js/controller/AllUsersCtrl.js"></script>    
+    <script src = "js/controller/AllHousesCtrl.js"></script>
+    <script src = "js/controller/NoticeCtrl.js"></script>
+    <script src = "js/controller/ScanBarcodeCtrl.js"></script>    
+    <script src = "js/controller/MonReqGraphCtrl.js"></script>
+    
+    <script src = "js/service/CheckInServ.js"></script>
+    
+<style>
+body{
+	background-color: white;
+}
+.wrapper {	
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+.form-signin {
+	max-width: 450px;
+	padding: 0px 35px 45px;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	border: 1px solid #EEEEEE;  
+	border-radius: 7px;
+	box-shadow: 3px 3px 3px 2px #ccc;
+	width: 450px;
+}
+.form-signin-heading, .checkbox {
+	margin-bottom: 30px;
+}
+.notifIcon {
+    position: absolute;
+	right: 4px;
+    top: 7px;
+    font-size: 10px;
+}
+.notifIcon {
+    animation-name: rotate; 
+    animation-duration: 3s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotate {
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(360deg);}
+}
+</style>
+</head>
+<body>
+	<div ng-app="CheckInApp">
+		<div ui-view></div>
+	</div>
+</body>
+</html>

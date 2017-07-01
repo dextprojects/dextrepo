@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-full" ng-controller = "DashboardCtrl" ng-init = "startingFuncs()">
+			<div id="mySidenav" class="sidenav">
+				<a href="" class="closebtn" onclick="closeNav()">&times;</a>
+				<ul class="nav nav-list">
+					<li>
+				    <a ui-sref="dashboard.home" onclick="closeNav()">Home</a>
+				  </li>
+				  <li>
+				    <a class="accordion-heading" data-toggle="collapse" data-target="#submenu">
+				      <span class="nav-header-primary">Master<span style="float: right"><b class="caret"></b></span></span>
+				    </a>
+				    <ul class="nav nav-list collapse" id="submenu">
+				      <li><a ui-sref="dashboard.allUsers" onclick="closeNav()">Users</a></li>
+				      <li><a ui-sref="dashboard.allHouses" onclick="closeNav()">Houses</a></li>
+				    </ul>
+				  </li>
+				  <li>
+				    <a ui-sref="dashboard.requests" onclick="closeNav()">Requests</a>
+				  </li>
+				  <li>
+				    <a ui-sref="dashboard.notice" onclick="closeNav()">Notice Board</a>
+				  </li>
+				  <li>
+				    <a ui-sref="dashboard.scanBarcode" onclick="closeNav()">Scanned Barcode</a>
+				  </li>
+				  
+				  <li>
+				    <a class="accordion-heading" data-toggle="collapse" data-target="#submenu2">
+				      <span class="nav-header-primary">Graphs<span style="float: right"><b class="caret"></b></span></span>
+				    </a>
+				    <ul class="nav nav-list collapse" id="submenu2">
+				      <li><a ui-sref="dashboard.monthReqGraph" onclick="closeNav()">Month-Request</a></li>
+				    </ul>
+				  </li>
+				</ul>
+			</div>
+	        <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        		<span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+		    </button>
+	          <a class="navbar-brand" style="cursor: pointer;" onclick="openNav()">&#9776; Check In</a>
+	        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+	            <li id="element" data-toggle="tooltip" data-placement="bottom" title=""><a href=""><span class="glyphicon glyphicon-bell"></span><span class="label notifIcon" id='notific' style="border-radius: 12px;background-color: #F44336">{{notifCount}}</span></a></li>
+	            <li class="dropdown inverse">
+	            	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{userName}} <b class="caret"></b></a>
+	            	<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				         <li role="presentation"><a role="menuitem" tabindex="-1" href=""><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+				         <li role="presentation" class="divider"></li>
+				         <li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="doLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				     </ul>
+	            </li>
+          </ul>
+        </div>
+	</div>
+</nav>
+<div id="wrapper" style="margin-top: 60px;">
+	<div ui-view></div>
+</div>
