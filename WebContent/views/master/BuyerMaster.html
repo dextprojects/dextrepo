@@ -1,0 +1,242 @@
+<section id="pageloader">
+	<div class="loader-item fa fa-spin"></div>
+</section>
+<div class="container-full" style="padding: 10px 10px 10px 10px;" ng-controller = "BuyerMstCtrl" ng-init = "startingFuncs()">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Buyer Master</div>
+			<div class="panel-body">
+				<fieldset ng-disabled="isSaving">
+					<form role="form" class="form-horizontal">
+						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Entry Type</label>
+					      <div class="col-lg-10 col-md-10">
+					      	<input type="checkbox" name="my-checkbox" ng-model="EntryType" id="EntryType">
+					      </div>
+   						</div>
+						<div class="form-group">
+					      <label class="control-label col-md-2 col-lg-2">Buyer Name</label>
+					      <div class="col-md-8 col-lg-8">
+					      	<input type="text" class="form-control" id="buyername" placeholder="Enter Buyer Name" style="display: none;">
+					      	<div id='buyerNameDisp'>
+								<select class="form-control js-data-example-ajax" ng-model="selectedItem" id="buyerNameSel">
+								  <option value="" selected="selected">Select Buyer Name</option>
+								</select>
+							</div>
+					      </div>
+					      <div class="col-md-2 col-lg-2">
+					        <input type="button" class="btn btn-primary" id="buylist" name='list' ng-model="modelList" value='List' ng-click='getBuyers("N")' data-toggle="modal" data-target=".bs-example-modal-lg"/>
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-md-2 col-lg-2">Buyer Type</label>
+					      <div class="col-md-10 col-lg-10">
+					      	<label class="radio-inline"><input type="radio" id="potBuyer" name="buyType"> Potential </label>
+					        <label class="radio-inline"><input type="radio" id="mstBuyer" name="buyType"> Master </label>
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Address</label>
+					      <div class="col-lg-10 col-md-10">
+					        <textarea name="address" placeholder="Address" class="form-control" rows="3"></textarea>
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">City</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="city" placeholder="Enter City">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">State/Province</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="state" placeholder="Enter State">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Pin Code</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="pincode" placeholder="Enter Pin Code">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">Country</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="country" placeholder="Enter Country">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Phone</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="phone" placeholder="Enter Phone">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">Fax</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="fax" placeholder="Enter Fax">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Cell</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="cell" placeholder="Enter Cell">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">Home Phone</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="homephone" placeholder="Enter Home Phone">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Web-Site Address</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="website" placeholder="Enter Web-Site Address">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">E-mail</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="email" placeholder="Enter E-mail">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">Contact Name</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="contnm" placeholder="Enter Contact Name">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Trader</label>
+					      <div class="col-lg-10 col-md-10">
+					      	<select class="js-example-basic-single form-control" ng-model="trader"></select>
+<!--					        <input type="text" class="form-control" id="trader" placeholder="Enter Trader">-->
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Interested Product List</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="prodLst" placeholder="Enter Interested Product List">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Bank Name</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="bnknm" placeholder="Enter Bank Name">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Bank Address</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="bnkadd" placeholder="Enter Bank Address">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Bank City</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="bnkcty" placeholder="Enter Bank City">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">Bank Country</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="bnkst" placeholder="Enter Bank Country">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Bank Phone</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="bnkphn" placeholder="Enter Bank Phone">
+					      </div>
+					      <label class="control-label col-lg-2 col-md-2">Bank Account</label>
+					      <div class="col-lg-4 col-md-4">
+					        <input type="text" class="form-control" id="bnkac" placeholder="Enter Bank Account">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Contact Name</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="cntnm" placeholder="Enter Contact Name">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Shipping Address</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="shpadd" placeholder="Enter Shipping Address">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Term</label>
+					      <div class="col-lg-10 col-md-10">
+					        <input type="text" class="form-control" id="term" placeholder="Enter Term">
+					      </div>
+   						</div>
+   						<div class="form-group">
+					      <label class="control-label col-lg-2 col-md-2">Notes</label>
+					      <div class="col-lg-10 col-md-10">
+					        <textarea name="notes" id="notes" placeholder="Enter Notes" rows="3" class="form-control"></textarea>
+					      </div>
+   						</div>
+   						<div class="form-group">
+   							<label class="control-label col-lg-2 col-md-2">From Date</label>
+	   						<div class="col-lg-4 col-md-4">
+	                		    <input type='text' class="form-control" id='datetimepicker1'/>
+					        </div>
+					        <label class="control-label col-lg-2 col-md-2">To Date</label>
+	   						<div class="col-lg-4 col-md-4">
+	                		    <input type='text' class="form-control" id='datetimepicker2'/>
+					        </div>
+				        </div>
+   						<div class="form-group">
+					      <div class="col-lg-12 col-md-12" align="center">
+					      	<input type='button' class="btn btn-primary" value="Save" ng-click="saveData()"/>
+					      	<input type='button' class="btn btn-default" value="Reset" ng-click="reset()"/>
+					      </div>
+   						</div>
+					</form>
+				</fieldset>
+			</div>
+		</div>
+			
+		<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  		<div class="modal-dialog modal-lg">
+		    	<div class="modal-content">
+	    			<div class="modal-header label-primary">
+	       				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	       					<span aria-hidden="true">&times;</span>
+	       				</button>
+	       				<h4 class="modal-title" id="myModalLabel" align="center" style="color: white;font-weight: bolder">Buyers</h4>
+	    			</div>
+	    			<div class="modal-body">
+	    				<div class="form-horizontal">
+		    				<div class="form-group">
+						      <label class="control-label col-lg-2 col-md-2">Search</label>
+						      <div class="col-lg-4 col-md-4">
+						        <input type="search" class="form-control" ng-model="searchText" placeholder="Search Buyer Name">
+						      </div>
+						      <label class="control-label col-lg-2 col-md-2">Status</label>
+						      <div class="col-lg-4 col-md-4">
+<!--						    <input type="checkbox" data-toggle="toggle" id="ActiveDeactive" ng-model="modelActiveDeactive"> -->
+								<input type="checkbox" name="activeDeactive" id='activeDeactive' checked>
+						      </div>
+	   						</div>
+   						</div>
+   						<hr>
+	    				<table class="table table-hover" width="100%" style="font-size: small">
+	    					<thead>
+					          <tr>
+					            <th style="text-align: center">#</th>
+					            <th style="text-align: center">Buyer Name</th>
+					            <th style="text-align: center">Status</th>
+					          </tr>
+						    </thead>
+			        		<tbody>
+			        			<tr ng-repeat="buyer in buyers | filter: searchText | filter: active" ng-model='buyer' ng-class="{danger: buyer.buyDel=='Y'}" style="cursor: pointer;">
+			        				<td style="text-align: center">{{$index+1}}</td>
+			        				<td style="text-align: center">{{buyer.buyNm}}</td>
+						            <td style="text-align: center" >{{buyer.buyDel=='Y'?'De-active':'Active'}}</td>
+			        			</tr>
+			        		</tbody>
+	       				</table>
+				    </div>
+	    		</div>
+			</div>
+		</div>
+</div>
+<script type="text/javascript">
+      //<![CDATA[
+	      $(window).load(function() { // makes sure the whole site is loaded
+	         $('.loader-item').fadeOut(); // will first fade out the loading animation
+	         $('#pageloader').delay(350).fadeOut('slow'); // will fade ou the white DIV that covers the website.
+	         $('body').delay(350).css({'overflow-y':'visible'});
+	      })
+      //]]>
+</script>

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: rgba(0,77,64,0.9);">
+	<div class="container-full" ng-controller = "DashboardCtrl" ng-init = "startingFuncs()">
+		<div id="mySidenav" class="sidenav">
+			<div class="closebtn" style="width: 100%;vertical-align: middle;">
+				<div class="closebtninner">
+					Exim 2016
+					<span class="glyphicon glyphicon-menu-left" onclick="closeNav()" style="float: right;margin-right: 10px;cursor: pointer;font-size: 20px;" aria-hidden="true"></span>
+				</div>
+			</div>
+			<ul class="nav nav-list sidenav-full">
+				<li ng-repeat="Module in menu">
+					<a class="accordion-heading" data-toggle="collapse" data-target="#{{Module.ModuleID}}">
+				    	<span class="nav-header-primary">{{Module.ModuleNm}}<span style="float: right" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
+				    </a>
+				    <ul class="nav nav-list collapse" id="{{Module.ModuleID}}">
+				      <li ng-repeat="Appl in Module.App"><a ui-sref="{{Appl.AppState}}" onclick="closeNav()">{{Appl.AppNm}}</a></li>
+				    </ul>
+				</li>
+			</ul>
+		</div>
+	    <div class="navbar-header">
+	       	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        		<span class="icon-bar"></span>
+		       	<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+		   	</button>
+	       	<a class="navbar-brand" style="cursor: pointer;" onclick="openNav()">
+		       	<b>&#9776;</b> Exim 2016
+	       	</a>
+	    </div>
+	    <div id="navbar" class="navbar-collapse collapse">
+	    	<ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
+<!--		    	<li id="element" data-toggle="tooltip" data-placement="bottom" title="">-->
+<!--		        	<a href="">-->
+<!--			          	<span class="glyphicon glyphicon-bell"></span>-->
+<!--			           	<span class="label notifIcon" id='notific' style="border-radius: 12px;background-color: #F44336">{{notifCount}}</span>-->
+<!--		            </a>-->
+<!--		        </li>-->
+		        <li class="dropdown inverse">
+		           	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{userName}} <b class="caret"></b></a>
+		           	<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				         <li role="presentation"><a role="menuitem" tabindex="-1" href=""><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+				         <li role="presentation" class="divider"></li>
+				         <li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="doLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				     </ul>
+		        </li>
+	          </ul>
+		</div>
+	</div>
+</nav>
+<div id="wrapper" style="margin-top: 60px;">
+	<div ui-view></div>
+</div>
+<footer class="footer" style="padding-top: 0px;">
+	<div align="middle" style="font-size: 11px;color: #616161;font-family: monospace;letter-spacing: 2px;">Dext Lab 2016</div>
+</footer>

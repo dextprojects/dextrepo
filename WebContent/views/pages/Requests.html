@@ -1,0 +1,112 @@
+<section id="pageloader">
+	<div class="loader-item fa fa-spin"></div>
+</section>
+<div class="alert alert-success alert-block fade" style="display: block;position: absolute;bottom: 10px;right: 20px;" id='alertId' hidden="hidden">
+	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> Request Id <strong id="compId"></strong> Has Been Status Changed. &nbsp;
+</div>
+<div class="alert alert-danger alert-block fade" style="display: block;position: absolute;bottom: 10px;right: 20px;" id='alertId' hidden="hidden">
+	<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> Something Wrong with Database. Try Again..! &nbsp;
+</div>
+<div class="container-full" style="padding: 10px 10px 10px 10px;" ng-controller = "RequestsCtrl" ng-init = "startingFuncs()">
+	<form role="form">
+		
+	    <div>
+		
+			<h1 align="center">
+		        <span class="label label-info">All Requests</span>
+		   	</h1>
+		
+			<div align="right" style="padding-bottom: 20px;">
+				<input type="button" class="btn btn-sm btn-default" value="Refresh" ng-click="getRequests()">
+			</div>
+			<fieldset ng-disabled="isSaving">
+			<table class="table table-hover" width="100%" style="font-size: small">
+		        <thead>
+		          <tr>
+		            <th style="text-align: center">Req ID</th>
+		            <th style="text-align: center">Date</th>
+		            <th style="text-align: center">User</th>
+		            <th style="text-align: center">Subject</th>          
+		            <th style="text-align: center">Details</th>
+		            <th style="text-align: center">Remark</th>
+		            <th style="text-align: center">New Status</th>
+		            <th style="text-align: center">New Remark</th>
+		            <th style="text-align: center">Update</th>
+		          </tr>
+		        </thead>
+		       	<tbody>
+		       		<tr ng-repeat="req in allRequests" ng-class="{success: req.Vcompl_id==changedId, active: req.Vflag=='X'}">
+			            <td align="center" style="vertical-align: middle;">
+				            <button type="button" class="btn btn-default btn-sm" ng-click='setVal(req.Data, req.Vcompl_id)' data-toggle="modal" data-target=".bs-example-modal-lg">{{req.Vcompl_id}} <span class="badge">{{req.DataLen}}</span></button>
+			            </td>
+			            <td align="center" style="vertical-align: middle">{{req.Vcreated_d}}</td>
+			            <td align="center" style="vertical-align: middle">{{req.Vemp_nm}}</td>
+			            <td align="left" style="vertical-align: middle">{{req.Vcompl_subject}}</td>
+			            <td align="left" style="vertical-align: middle">{{req.Vcompl_detail}}</td>
+			            <td align="left" style="vertical-align: middle">{{req.Vremarks}}</td>
+			            <td style="vertical-align: middle">
+			            	{{statusData[$index]=req.Vstatus;""}}
+				            <select style="height: 25px;" ng-disabled="{{req.Vflag=='X'}}" ng-model="req.Vstatus">     
+				            	<option ng-repeat="s in status track by s.Name">{{s.Name}}</option>
+				            </select>
+			            </td> 
+			            <td align="center" style="vertical-align: middle">
+<!--			            	<input type="text" data-ng-model="remarkData[$index]" ng-disabled="{{req.Vflag=='X'}}" class="form-control input-sm" style="width: 80px" />-->
+			            	<textarea data-ng-model="remarkData[$index]" ng-disabled="{{req.Vflag=='X'}}" class="form-control input-sm" cols="70"></textarea>
+			            	
+			            </td>
+			            <td align="center" style="vertical-align: middle">
+			            	<button class="btn btn-info btn-sm" ng-class="{disabled: req.Vflag=='X'}" ng-click="updateValue(req.Vcompl_id,req.Vcompl_subject,$index,req.Vstatus)">{{req.Vflag=='X' ? 'Closed' : 'Update'}}</button>
+			            </td>          
+		       		</tr>
+		       	</tbody>
+			</table>
+			</fieldset>
+		    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  			<div class="modal-dialog modal-lg">
+			    	<div class="modal-content">
+	      				<div class="modal-header label-info">
+	        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        					<span aria-hidden="true">&times;</span>
+	        				</button>
+	        				<h4 class="modal-title" id="myModalLabel" align="center" style="color: white;font-weight: bolder">Request Id: {{ModalReqId}}</h4>
+	      				</div>
+	      				<div class="modal-body">
+	       					<table class="table table-hover" width="100%" style="font-size: small">
+	       						<thead>
+							          <tr>
+							            <th style="text-align: center">#</th>
+							            <th style="text-align: center">Updated By</th>
+							            <th style="text-align: center">Updated Date</th>
+							            <th style="text-align: center">Status</th>
+							            <th style="text-align: center">Remarks</th>          
+							          </tr>
+							    </thead>
+				        		<tbody>
+				        			<tr ng-repeat="reqData in reqIdData">
+				        				<td style="text-align: center">{{reqData.id}}</td>
+				        				<td style="text-align: center">{{reqData.updatedBy}}</td>
+							            <td style="text-align: center">{{reqData.update_dt}}</td>
+							            <td style="text-align: center">{{reqData.status}}</td>
+							            <td style="text-align: center">{{reqData.remarks}}</td>
+				        			</tr>
+				        		</tbody>
+	       					</table>
+					    </div>
+	    			</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+      //<![CDATA[
+	      $(window).load(function() { // makes sure the whole site is loaded
+	         $('.loader-item').fadeOut(); // will first fade out the loading animation
+	         $('#pageloader').delay(350).fadeOut('slow'); // will fade ou the white DIV that covers the website.
+	         $('body').delay(350).css({'overflow-y':'visible'});
+	      })
+      //]]>
+</script>
