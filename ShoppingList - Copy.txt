@@ -1,5 +1,0 @@
-Veggie
-	-	Tomato
-	-	Potato
-	-	Peas
-	-	Carrot
